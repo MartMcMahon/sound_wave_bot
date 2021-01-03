@@ -1,0 +1,10 @@
+* 2021 DUNK ON EVERYONE
+* FIRST -- a name
+** NEXT
+   - bot input as Spotify API requests.
+******* https://developer.spotify.com/documentation/web-api/quick-start/
+******* https://github.com/thelinmichael/spotify-web-api-node#usage
+         |- call 1: send id and uri -> code
+         |- call 2: send code and secret from uri -> tokens
+         |- call 3: adding song to queue
+         |- msic: refresh token
