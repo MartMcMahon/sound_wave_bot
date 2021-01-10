@@ -1,9 +1,7 @@
 {
   "dependencies": {
     "axios": "^0.21.1",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "spotify-web-api-node": "^5.0.0",
-    "tmi.js": "^1.7.1"
+    "tmi": "^2.0.0"
   }
 }
