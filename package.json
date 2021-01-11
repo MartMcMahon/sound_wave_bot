@@ -5,6 +5,7 @@
     "tmi": "^2.0.0"
   },
   "scripts": {
-    "start": "source .env && node test.js"
+    "start": "source .env && node test.js",
+    "server": "source .env && node server.js"
   }
 }
