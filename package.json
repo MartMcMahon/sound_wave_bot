@@ -2,7 +2,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "express": "^4.17.1",
-    "tmi": "^2.0.0"
+    "tmi.js": "^1.7.1"
   },
   "scripts": {
     "start": "source .env && node test.js",

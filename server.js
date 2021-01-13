@@ -72,9 +72,15 @@ app.get("/login", (req, res) => {
   );
 });
 
+// Define configuration options
+const tmi_opts = {
+  identity: {
+    username: process.env.BOT_USERNAME,
+    password: process.env.OAUTH_TOKEN,
+  },
+  channels: [process.env.CHANNEL_NAME],
+};
 const client = new tmi.client(tmi_opts);
-client.on("message", onMessageHandler);
-client.on("connected", onConnectedHandler);
 
 const onMessageHandler = (target, context, msg, self) => {
   if (self) {
@@ -113,6 +119,8 @@ function onConnectedHandler(addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
 }
 
+client.on("message", onMessageHandler);
+client.on("connected", onConnectedHandler);
 client.connect();
 
 // app.listen(port, () => {
