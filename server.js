@@ -71,6 +71,52 @@ app.get("/login", (req, res) => {
   );
 });
 
+const client = new tmi.client(tmi_opts);
+client.on("message", onMessageHandler);
+client.on("connected", onConnectedHandler);
+
+const onMessageHandler = (target, context, msg, self) => {
+  if (self) {
+    return;
+  } // Ignore messages from the bot
+
+  // Remove whitespace from chat message
+  const commandName = msg.trim();
+
+  // If the command is known, let's execute it
+  if (commandName === "!d20") {
+    const num = rollDice(commandName);
+    client.say(
+      target,
+      `You rolled a ${num}. Link: https://glitch.com/~twitch-chatbot`
+    );
+    console.log(`* Executed ${commandName} command`);
+  } else if (commandName.startsWith("!add")) {
+    const args = commandName.split(" ");
+    console.log(`what you typed was ${args[1]}`);
+    const res = getAlbum(args[1]);
+    client.say(target, `here's an album you didn't request: ${args[1]}`);
+  } else {
+    console.log(`* Unknown command ${commandName}`);
+  }
+};
+
+// Function called when the "dice" command is issued
+function rollDice() {
+  const sides = 20;
+  return Math.floor(Math.random() * sides) + 1;
+}
+
+
+// Called every time the bot connects to Twitch chat
+function onConnectedHandler(addr, port) {
+  console.log(`* Connected to ${addr}:${port}`);
+}
+
+
+
+client.connect();
+
 app.listen(port, () => {
   console.log("listening...");
 });
