@@ -123,6 +123,6 @@ client.on("message", onMessageHandler);
 client.on("connected", onConnectedHandler);
 client.connect();
 
-// app.listen(port, () => {
-//   console.log("listening...");
-// });
+app.listen(port, () => {
+  console.log("listening...");
+});
