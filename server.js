@@ -1,5 +1,6 @@
 const axios = require("axios");
 const querystring = require("querystring");
+const tmi = require("tmi.js");
 
 const express = require("express");
 const app = express();
@@ -107,13 +108,10 @@ function rollDice() {
   return Math.floor(Math.random() * sides) + 1;
 }
 
-
 // Called every time the bot connects to Twitch chat
 function onConnectedHandler(addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
 }
-
-
 
 client.connect();
 
