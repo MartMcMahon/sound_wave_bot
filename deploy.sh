@@ -1,1 +1,1 @@
-cd sound_wave_bot && git pull
+cd /home/soundwavebot/sound_wave_bot && git pull
