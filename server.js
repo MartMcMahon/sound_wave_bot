@@ -93,16 +93,13 @@ const onMessageHandler = (target, context, msg, self) => {
   // If the command is known, let's execute it
   if (commandName === "!d20") {
     const num = rollDice(commandName);
-    client.say(
-      target,
-      `You rolled a ${num}. Link: https://glitch.com/~twitch-chatbot`
-    );
+    client.say(target, `You rolled a ${num}`);
     console.log(`* Executed ${commandName} command`);
-  } else if (commandName.startsWith("!add")) {
-    const args = commandName.split(" ");
-    console.log(`what you typed was ${args[1]}`);
-    const res = getAlbum(args[1]);
-    client.say(target, `here's an album you didn't request: ${args[1]}`);
+  } else if (commandName.startsWith("!help")) {
+    client.say(target, `!d20    -- for fun`);
+    client.say(target, `!current -- currently playing`);
+    client.say(target, `!list    -- current playlist`);
+    client.say(target, `!play    -- add song to queue `);
   } else {
     console.log(`* Unknown command ${commandName}`);
   }
