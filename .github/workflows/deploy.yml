@@ -3,20 +3,12 @@ name: sound_wave_bot CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: do the first thing
       uses: actions/checkout@v2
-    - name: do the one thing
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        script: ./deploy.sh
+    - name: test
+      run: touch big_booty
