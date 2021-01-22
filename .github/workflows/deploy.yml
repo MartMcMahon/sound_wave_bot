@@ -10,5 +10,7 @@ jobs:
     steps:
     - name: do the first thing
       uses: actions/checkout@v2
-    - name: test
-      run: touch big_booty
+    - name: build
+      run: yarn && yarn build
+    - name: give files a nice home
+      run: cp -r build/* /home/sound_wave_bot/web
