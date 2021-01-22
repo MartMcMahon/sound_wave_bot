@@ -10,7 +10,10 @@ jobs:
     steps:
     - name: do the first thing
       uses: actions/checkout@v2
-    - name: build
-      run: yarn && yarn build
-    - name: give files a nice home
-      run: cp -r build/* /home/sound_wave_bot/web
+
+    - name: install deps
+      run: npm install
+
+    - name: run the server
+      run: source ./.env && pm2 restart server
+
