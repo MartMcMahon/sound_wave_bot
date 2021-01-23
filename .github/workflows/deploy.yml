@@ -12,7 +12,7 @@ jobs:
       CHANNEL_NAME: wonkmart
       OAUTH_TOKEN: ${{secrets.OAUTH_TOKEN}}
       SPOTIFY_CLIENT_ID: ${{secrets.SPOTIFY_CLIENT_ID}}
-      SPOTIFY_SERVER_ID: ${{secrets.SPOTIFY_SERVER_ID}}
+      SPOTIFY_CLIENT_SECRET: ${{secrets.SPOTIFY_CLIENT_SECRET}}
       REDIRECT_URI: ${{secrets.REDIRECT_URI}}
     steps:
     - name: do the first thing
