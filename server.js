@@ -94,8 +94,9 @@ const onMessageHandler = (target, context, msg, self) => {
   // If the command is known, let's execute it
 
   if (commandName.startsWith("!current")) {
-    const listening_str = currentlyListening().then((res) => res);
-    client.say(target, `currently listening to: ${listening_str}`);
+    const listening_str = currentlyListening().then((res) => {
+      client.say(target, `currently listening to: ${listening_str}`);
+    });
   } else if (commandName === "!d20") {
     const num = rollDice(commandName);
     client.say(target, `You rolled a ${num}`);
