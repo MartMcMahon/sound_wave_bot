@@ -14,6 +14,7 @@ let code = null;
 let token = "";
 let refresh_token = "";
 let token_exp = 0;
+const spotify_api = "https://api.spotify.com/v1";
 
 app.get("/", (req, res) => {
   const token_url = "https://accounts.spotify.com/api/token";
@@ -92,7 +93,10 @@ const onMessageHandler = (target, context, msg, self) => {
 
   // If the command is known, let's execute it
 
-  if (commandName === "!d20") {
+  if (commandName.startsWith("!current")) {
+    const listening_str = currentlyListening().then((res) => res);
+    client.say(target, `currently listening to: ${listening_str}`);
+  } else if (commandName === "!d20") {
     const num = rollDice(commandName);
     client.say(target, `You rolled a ${num}`);
     console.log(`* Executed ${commandName} command`);
@@ -108,6 +112,16 @@ const onMessageHandler = (target, context, msg, self) => {
     console.log(`* Unknown command ${commandName}`);
   }
 };
+
+async function currentlyListening() {
+  axios({
+    method: "get",
+    url: spotify_api + "/me/player",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+}
 
 // Function called when the "dice" command is issued
 function rollDice(cmd) {
