@@ -91,11 +91,12 @@ const onMessageHandler = (target, context, msg, self) => {
   // Remove whitespace from chat message
   const commandName = msg.trim();
 
-  // If the command is known, let's execute it
+  // If the command is known, execute it
 
   if (commandName.startsWith("!current")) {
-    const listening_str = currentlyListening().then((res) => {
-      client.say(target, `currently listening to: ${listening_str}`);
+    currentlyListening().then((res) => {
+      console.log(res)
+      client.say(target, `currently listening to: ${res}`);
     });
   } else if (commandName === "!d20") {
     const num = rollDice(commandName);
