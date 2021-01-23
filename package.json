@@ -2,9 +2,10 @@
   "dependencies": {
     "axios": "^0.21.1",
     "express": "^4.17.1",
+    "pm2": "^4.5.1",
     "tmi.js": "^1.7.1"
   },
   "scripts": {
     "start": ". ./.env && node server.js"
-  }
+  },
 }

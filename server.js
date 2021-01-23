@@ -96,10 +96,11 @@ const onMessageHandler = (target, context, msg, self) => {
     client.say(target, `You rolled a ${num}`);
     console.log(`* Executed ${commandName} command`);
   } else if (commandName.startsWith("!help")) {
-    client.say(target, `!d20    -- for fun`);
-    client.say(target, `!current -- currently playing`);
-    client.say(target, `!list    -- current playlist`);
-    client.say(target, `!play    -- add song to queue `);
+    client.say(target, `!d20    -- for fun
+    !current -- currently playing
+    !list    -- current playlist
+    !play    -- add song to queue
+    `);
   } else {
     console.log(`* Unknown command ${commandName}`);
   }
