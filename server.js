@@ -91,24 +91,30 @@ const onMessageHandler = (target, context, msg, self) => {
   const commandName = msg.trim();
 
   // If the command is known, let's execute it
+
   if (commandName === "!d20") {
     const num = rollDice(commandName);
     client.say(target, `You rolled a ${num}`);
     console.log(`* Executed ${commandName} command`);
+  } else if (commandName.startsWith("!d10")) {
+    const num = rollDice(commandName);
+    client.say(target, `You rolled a ${num}`);
   } else if (commandName.startsWith("!help")) {
-    client.say(target, `!d20    -- for fun
-    !current -- currently playing
-    !list    -- current playlist
-    !play    -- add song to queue
-    `);
+    client.say(target, `!d20    -- for fun`);
+    client.say(target, `!current -- currently playing`);
+    client.say(target, `!list    -- current playlist`);
+    client.say(target, `!play    -- add song to queue`);
   } else {
     console.log(`* Unknown command ${commandName}`);
   }
 };
 
 // Function called when the "dice" command is issued
-function rollDice() {
-  const sides = 20;
+function rollDice(cmd) {
+  let sides = 20;
+  if (cmd === "!d10") {
+    sides = 10;
+  }
   return Math.floor(Math.random() * sides) + 1;
 }
 
