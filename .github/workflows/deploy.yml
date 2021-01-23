@@ -7,6 +7,13 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+    env:
+      BOT_USERNAME: sound_wave_bot
+      CHANNEL_NAME: wonkmart
+      OAUTH_TOKEN: ${{secrets.OAUTH_TOKEN}}
+      SPOTIFY_CLIENT_ID: ${{secrets.SPOTIFY_CLIENT_ID}}
+      SPOTIFY_SERVER_ID: ${{secrets.SPOTIFY_SERVER_ID}}
+      REDIRECT_URI: ${{secrets.REDIRECT_URI}}
     steps:
     - name: do the first thing
       uses: actions/checkout@v2
@@ -15,5 +22,4 @@ jobs:
       run: npm install
 
     - name: run the server
-      run: source ./.env && pm2 restart server
-
+      run: pm2 restart server --update-env
