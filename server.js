@@ -106,9 +106,11 @@ const onMessageHandler = (target, context, msg, self) => {
   // If the command is known, execute it
   if (commandName.startsWith("!current")) {
     currentlyListening().then((res) => {
-      // console.log(`${res} ${res.statusCode} ${res.data}`);
+      console.log(`---------res------------` + res);
+      console.log(`---------statuscode------------` + res.statusCode);
+      console.log(`---------data------------` + JSON.parse(res));
       const track = res.data.item.name;
-      client.say(target, "currently playing: "+track);
+      client.say(target, "currently playing: " + track);
     });
   } else if (commandName === "!d20") {
     const num = rollDice(commandName);
@@ -117,11 +119,11 @@ const onMessageHandler = (target, context, msg, self) => {
   } else if (commandName.startsWith("!d10")) {
     const num = rollDice(commandName);
     client.say(target, `You rolled a ${num}`);
-  } else if (commandName.startsWith("!help")) {
-    client.say(target, `!d20    -- for fun`);
-    client.say(target, `!current -- currently playing`);
-    client.say(target, `!list    -- current playlist`);
-    client.say(target, `!play    -- add song to queue`);
+    // } else if (commandName.startsWith("!help")) {
+    //   client.say(target, `!d20    -- for fun`);
+    //   client.say(target, `!current -- currently playing`);
+    //   client.say(target, `!list    -- current playlist`);
+    //   client.say(target, `!play    -- add song to queue`);
   } else {
     console.log(`* Unknown command ${commandName}`);
   }
