@@ -90,7 +90,7 @@ const onMessageHandler = (target, context, msg, self) => {
 
   if (commandName.startsWith("!current")) {
     currentlyListening().then((res) => {
-      console.log(res);
+      console.log(`${res} ${res.statusCode} ${res.data}`);
       client.say(target, `${res} ${res.statusCode} ${res.data}`);
     });
   } else if (commandName === "!d20") {
