@@ -9,6 +9,7 @@ const port = 80;
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirect_uri = process.env.REDIRECT_URI;
+console.log("client_id", client_id);
 
 let code = null;
 let token = "";
@@ -49,6 +50,21 @@ app.get("/", (req, res) => {
       }).then((me_response) => {
         console.log("logged in");
         res.send(me_response.data);
+
+        console.log("token is ", token);
+        axios({
+          method: "get",
+          url: spotify_api + "/me/player",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       });
     })
     .catch((e) => {
@@ -64,6 +80,7 @@ app.get("/login", (req, res) => {
         client_id: client_id,
         response_type: "code",
         redirect_uri: redirect_uri,
+        scope: "user-read-playback-state",
       })
   );
 });
