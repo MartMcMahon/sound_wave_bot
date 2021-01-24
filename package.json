@@ -4,5 +4,8 @@
     "express": "^4.17.1",
     "pm2": "^4.5.1",
     "tmi.js": "^1.7.1"
+  },
+  "scripts": {
+    "start": "authbind --deep pm2 restart server.js"
   }
 }
