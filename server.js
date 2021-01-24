@@ -105,10 +105,11 @@ const onMessageHandler = (target, context, msg, self) => {
 
   // If the command is known, execute it
   if (commandName.startsWith("!current")) {
+    console.log('current' + res);
     currentlyListening().then((res) => {
-      console.log(`---------res------------` + res);
-      console.log(`---------statuscode------------` + res.statusCode);
-      console.log(`---------data------------` + JSON.parse(res));
+      console.log('---------res------------' + res);
+      console.log('---------statuscode------------' + res.statusCode);
+      console.log('---------data------------' + JSON.parse(res));
       const track = res.data.item.name;
       client.say(target, "currently playing: " + track);
     });
@@ -129,7 +130,7 @@ const onMessageHandler = (target, context, msg, self) => {
   }
 };
 
-async function currentlyListening() {
+const currentlyListening = () => {
   return axios({
     method: "get",
     url: spotify_api + "/me/player",
