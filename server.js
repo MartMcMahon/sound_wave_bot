@@ -107,6 +107,7 @@ const onMessageHandler = (target, context, msg, self) => {
   if (commandName.startsWith("!current")) {
     currentlyListening().then((res) => {
       // console.log(`${res} ${res.statusCode} ${res.data}`);
+      const track = res.data.item.name;
       client.say(target, "currently playing: "+track);
     });
   } else if (commandName === "!d20") {
