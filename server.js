@@ -20,11 +20,6 @@ app.get("/", (req, res) => {
   const token_url = "https://accounts.spotify.com/api/token";
   code = req.query.code;
 
-  console.log("code is ", code);
-  console.log(
-    "auth is ",
-    Buffer.from(`${client_id}:${client_secret}`).toString("base64")
-  );
   axios({
     method: "post",
     url: token_url,
@@ -52,7 +47,7 @@ app.get("/", (req, res) => {
           Authorization: "Bearer " + token,
         },
       }).then((me_response) => {
-        console.log(me_response);
+        console.log("logged in");
         res.send(me_response.data);
       });
     })
@@ -95,8 +90,8 @@ const onMessageHandler = (target, context, msg, self) => {
 
   if (commandName.startsWith("!current")) {
     currentlyListening().then((res) => {
-      console.log(res)
-      client.say(target, `currently listening to: ${res}`);
+      console.log(res);
+      client.say(target, `${res} ${res.statusCode} ${res.data}`);
     });
   } else if (commandName === "!d20") {
     const num = rollDice(commandName);
@@ -116,7 +111,7 @@ const onMessageHandler = (target, context, msg, self) => {
 };
 
 async function currentlyListening() {
-  axios({
+  return axios({
     method: "get",
     url: spotify_api + "/me/player",
     headers: {
