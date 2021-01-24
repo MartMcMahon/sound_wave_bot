@@ -104,7 +104,6 @@ const onMessageHandler = (target, context, msg, self) => {
   const commandName = msg.trim();
 
   // If the command is known, execute it
-
   if (commandName.startsWith("!current")) {
     currentlyListening().then((res) => {
       console.log(`${res} ${res.statusCode} ${res.data}`);
