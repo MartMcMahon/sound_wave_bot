@@ -35,42 +35,27 @@ app.get("/", (req, res) => {
         Buffer.from(`${client_id}:${client_secret}`).toString("base64"),
       "content-type": "application/x-www-form-urlencoded;charset=utf-8",
     },
-  })
-    .then((token_response) => {
-      token = token_response.data.access_token;
-      token_exp = Date.now() + token_response.expires_in * 1000;
-      refresh_token = token_response.data.refresh_token;
+  }).then((token_response) => {
+    token = token_response.data.access_token;
+    token_exp = Date.now() + token_response.expires_in * 1000;
+    refresh_token = token_response.data.refresh_token;
 
-      axios({
-        method: "get",
-        url: "https://api.spotify.com/v1/me",
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }).then((me_response) => {
+    axios({
+      method: "get",
+      url: "https://api.spotify.com/v1/me",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((me_response) => {
         console.log("logged in");
         res.send(me_response.data);
-
-        // axios({
-        //   method: "get",
-        //   url: spotify_api + "/me/player",
-        //   headers: {
-        //     Authorization: "Bearer " + token,
-        //   },
-        // })
-        //   .then((res) => {
-        //     console.log(res);
-        //   })
-        //   .catch((e) => {
-        //     console.log(e);
-        //   });
-      // });
-
-    })
-    .catch((e) => {
-      console.log(e);
-      res.send(e);
-    });
+      })
+      .catch((e) => {
+        console.log(e);
+        res.send(e);
+      });
+  });
 });
 
 app.get("/login", (req, res) => {
@@ -105,10 +90,10 @@ const onMessageHandler = (target, context, msg, self) => {
 
   // If the command is known, execute it
   if (commandName === "!current") {
-    console.log('current' + res);
+    console.log("current" + res);
     currentlyListening().then((res) => {
-      console.log('---------res------------' + res);
-      console.log('---------statuscode------------' + res.statusCode);
+      console.log("---------res------------" + res);
+      console.log("---------statuscode------------" + res.statusCode);
       const track = res.data.item.name;
       client.say(target, "currently playing: " + track);
     });
@@ -137,7 +122,7 @@ const currentlyListening = () => {
       Authorization: "Bearer " + token,
     },
   });
-}
+};
 
 // Function called when the "dice" command is issued
 function rollDice(cmd) {
