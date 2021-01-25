@@ -51,20 +51,21 @@ app.get("/", (req, res) => {
         console.log("logged in");
         res.send(me_response.data);
 
-        axios({
-          method: "get",
-          url: spotify_api + "/me/player",
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-      });
+        // axios({
+        //   method: "get",
+        //   url: spotify_api + "/me/player",
+        //   headers: {
+        //     Authorization: "Bearer " + token,
+        //   },
+        // })
+        //   .then((res) => {
+        //     console.log(res);
+        //   })
+        //   .catch((e) => {
+        //     console.log(e);
+        //   });
+      // });
+
     })
     .catch((e) => {
       console.log(e);

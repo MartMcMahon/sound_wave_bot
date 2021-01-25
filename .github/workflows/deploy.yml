@@ -21,5 +21,5 @@ jobs:
     - name: install deps
       run: npm install
 
-    - name: run the server
-      run: authbind --deep pm2 restart server --update-env
+    # - name: run the server
+    #   run: authbind --deep pm2 restart server --update-env
