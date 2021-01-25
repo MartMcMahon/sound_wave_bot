@@ -51,7 +51,6 @@ app.get("/", (req, res) => {
         console.log("logged in");
         res.send(me_response.data);
 
-        console.log("token is ", token);
         axios({
           method: "get",
           url: spotify_api + "/me/player",
@@ -104,12 +103,11 @@ const onMessageHandler = (target, context, msg, self) => {
   const commandName = msg.trim();
 
   // If the command is known, execute it
-  if (commandName.startsWith("!current")) {
+  if (commandName === "!current") {
     console.log('current' + res);
     currentlyListening().then((res) => {
       console.log('---------res------------' + res);
       console.log('---------statuscode------------' + res.statusCode);
-      console.log('---------data------------' + JSON.parse(res));
       const track = res.data.item.name;
       client.say(target, "currently playing: " + track);
     });
