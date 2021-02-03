@@ -4,3 +4,9 @@ node_modules
 yarn-error.log
 
 .DS_Store
+
+__pycache__/
+bin/
+include/
+lib/
+pyvenv.cfg
